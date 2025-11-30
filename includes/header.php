@@ -1,3 +1,3 @@
 <header>
-    <div class="logo">Php todo</div>
+    <div class="logo">Php Blog</div>
 </header>
