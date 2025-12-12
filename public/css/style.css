@@ -163,3 +163,14 @@
 .p-10 {
     padding:10px;
 }
+
+/* ... */
+
+.low-opacity {
+  opacity: 0.5;
+}
+
+.small {
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}

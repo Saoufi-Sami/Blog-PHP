@@ -14,9 +14,9 @@ $articles = [];
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-if (file_exists($filename)) {
-  $articles = json_decode(file_get_contents($filename), true) ?? [];
-}
+  if (file_exists($filename)) {
+    $articles = json_decode(file_get_contents($filename), true) ?? [];
+  }
   $_POST = filter_input_array(INPUT_POST, [
     'title' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
     'image' => FILTER_SANITIZE_URL,
@@ -32,40 +32,40 @@ if (file_exists($filename)) {
   $content = $_POST['content'] ?? '';
 
 
-  if(!$title) {
+  if (!$title) {
     $errors['title'] = ERROR_REQUIRED;
   } elseif (mb_strlen($title) < 5) {
-    $errors['title'] =ERROR_TITLE_TOO_SHORT;
+    $errors['title'] = ERROR_TITLE_TOO_SHORT;
   }
 
-   if(!$image) {
+  if (!$image) {
     $errors['image'] = ERROR_IMAGE_URL;
   } elseif (!filter_var($image, FILTER_VALIDATE_URL)) {
-    $errors['image'] =ERROR_IMAGE_URL;
+    $errors['image'] = ERROR_IMAGE_URL;
   }
 
-  if(!$category) {
+  if (!$category) {
     $errors['category'] = ERROR_REQUIRED;
   }
 
-    if(!$content) {
+  if (!$content) {
     $errors['content'] = ERROR_REQUIRED;
   } elseif (mb_strlen($content) < 50) {
-    $errors['content'] =ERROR_CONTENT_TOO_SHORT;
+    $errors['content'] = ERROR_CONTENT_TOO_SHORT;
   }
 
 
-if (!count(array_filter($errors, fn ($e) => $e !== ''))) {
-$articles = [ ... $articles,[
-  'title' => $title,
-  'image' => $image,
-  'category' => $category,
-  'content' => $content,
-  'id' => time()
-]];
-file_put_contents($filename, json_encode($articles));
-header('location: /' );
-}
+  if (!count(array_filter($errors, fn($e) => $e !== ''))) {
+    $articles = [...$articles, [
+      'title' => $title,
+      'image' => $image,
+      'category' => $category,
+      'content' => $content,
+      'id' => time()
+    ]];
+    file_put_contents($filename, json_encode($articles));
+    header('location: /');
+  }
 }
 
 
@@ -94,35 +94,35 @@ header('location: /' );
         <form action="/add-article.php" method="post">
           <div class="form-control">
             <label for="title">Titre</label>
-            <input type="text" name="title" id="title" value<?= $title ?? ''?>>
-            <?php if($errors['title']): ?>
-          <p class="text-danger"><?= $errors['title'] ?></p> 
-          <?php endif; ?>
+            <input type="text" name="title" id="title" value<?= $title ?? '' ?>>
+            <?php if ($errors['title']): ?>
+              <p class="text-danger"><?= $errors['title'] ?></p>
+            <?php endif; ?>
           </div>
           <div class="form-control">
             <label for="image">Image</label>
-            <input type="text" name="image" id="image" value<?= $image ?? ''?>>
-            <?php if($errors['image']): ?>
-          <p class="text-danger"><?= $errors['image'] ?></p> 
-          <?php endif; ?>
+            <input type="text" name="image" id="image" value<?= $image ?? '' ?>>
+            <?php if ($errors['image']): ?>
+              <p class="text-danger"><?= $errors['image'] ?></p>
+            <?php endif; ?>
           </div>
           <div class="form-control">
             <label for="category">Catégorie</label>
             <select name="category" id="category">
-              <option value="technology">Technologie</option>
+              <option value="technologie">Technologie</option>
               <option value="nature">Nature</option>
-              <option value="politics">Politique</option>
+              <option value="politique">Politique</option>
             </select>
-               <?php if($errors['category']): ?>
-          <p class="text-danger"><?= $errors['category'] ?></p> 
-          <?php endif; ?>
+            <?php if ($errors['category']): ?>
+              <p class="text-danger"><?= $errors['category'] ?></p>
+            <?php endif; ?>
           </div>
           <div class="form-control">
             <label for="content">Contenu</label>
-            <textarea name="content" id="content" value<?= $content ?? ''?>></textarea>
-             <?php if($errors['content']): ?>
-          <p class="text-danger"><?= $errors['content'] ?></p> 
-          <?php endif; ?>
+            <textarea name="content" id="content" value<?= $content ?? '' ?>></textarea>
+            <?php if ($errors['content']): ?>
+              <p class="text-danger"><?= $errors['content'] ?></p>
+            <?php endif; ?>
           </div>
           <div class="form-actions">
             <a href="/" class="btn btn-secondary" type="button">Annuler</a>
