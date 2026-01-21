@@ -1,0 +1,11 @@
+{
+    "name": "jean/myproject",
+    "autoload": {
+        "psr-4": {
+            "Jean\\Myproject\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/error-handler": "^8.0"
+    }
+}
