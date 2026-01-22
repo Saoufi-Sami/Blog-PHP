@@ -1,7 +1,4 @@
 <?php
-
-$pdo = require_once __DIR__ . '/../database.php';
-
 class ArticleDB
 {
   private PDOStatement $statementCreateOne;
@@ -18,12 +15,14 @@ class ArticleDB
         title,
         category,
         content,
-        image
+        image,
+        author
       ) VALUES (
         :title,
         :category,
         :content,
-        :image
+        :image,
+        :author
       )
     ');
     $this->statementUpdateOne = $pdo->prepare('
@@ -32,7 +31,8 @@ class ArticleDB
         title=:title,
         category=:category,
         content=:content,
-        image=:image
+        image=:image,
+        author=:author
       WHERE id=:id
     ');
     $this->statementReadOne = $pdo->prepare('SELECT * FROM article WHERE id=:id');
@@ -67,6 +67,7 @@ class ArticleDB
     $this->statementCreateOne->bindValue(':content', $article['content']);
     $this->statementCreateOne->bindValue(':category', $article['category']);
     $this->statementCreateOne->bindValue(':image', $article['image']);
+    $this->statementCreateOne->bindValue(':author', $article['author']);
     $this->statementCreateOne->execute();
     return $this->fetchOne($this->pdo->lastInsertId());
   }
@@ -78,6 +79,7 @@ class ArticleDB
     $this->statementUpdateOne->bindValue(':category', $article['category']);
     $this->statementUpdateOne->bindValue(':image', $article['image']);
     $this->statementUpdateOne->bindValue(':id', $article['id']);
+    $this->statementUpdateOne->bindValue(':author', $article['author']);
     $this->statementUpdateOne->execute();
     return $article;
   }
