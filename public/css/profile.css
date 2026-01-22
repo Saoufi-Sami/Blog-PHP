@@ -25,3 +25,13 @@
   border: var(--border);
   margin-bottom: 5px;
 }
+
+@media only screen and (max-width: 800px) {
+  .articles-list ul li {
+    flex-flow: column;
+  }
+
+  .article-actions {
+    margin-top: 1rem;
+  }
+}

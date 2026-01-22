@@ -1,7 +1,7 @@
 <?php
 
 $dns = 'mysql:host=localhost;dbname=blog';
-$user = 'paul';
+$user = 'root';
 $pwd = 'Pomme123;';
 
 try {
@@ -10,7 +10,7 @@ try {
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
   ]);
 } catch (PDOException $e) {
-  echo "ERROR : " . $e->getMessage();
+  throw new Exception($e->getMessage());
 }
 
 return $pdo;

@@ -1,3 +1,5 @@
+/* ... */
+
 /* header */
 
 header {
@@ -29,6 +31,32 @@ header {
   background-color: var(--primary-dark);
 }
 
+.header-mobile {
+  display: none;
+}
+
+.header-mobile-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  color: var(--text-color);
+  background: var(--background-light);
+}
+
+.show {
+  display: block;
+}
+
+.header-mobile-list li {
+  padding: 1rem;
+}
+
+.header-mobile-list li.active {
+  color: white;
+  font-weight: 700;
+}
+
 .active {
   background-color: var(--primary-dark);
 }
@@ -53,4 +81,22 @@ li.header-profile {
 
 li.header-profile:hover {
   background-color: var(--dark);
+}
+
+/* ... */
+
+/* ... */
+@media only screen and (max-width: 800px) {
+  .header-menu {
+    display: none;
+  }
+  .header-mobile {
+    display: block;
+  }
+  .form-container {
+    width: 100%;
+  }
+  .content  {
+    padding:1rem;
+  }
 }
