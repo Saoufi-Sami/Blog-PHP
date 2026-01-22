@@ -10,7 +10,7 @@ $currentUser = $currentUser ?? false;
         <a href="/form-article.php">Écrire un article</a>
       </li>
       <li class="<?= $_SERVER['REQUEST_URI'] === '/profile.php' ? 'active' : '' ?> header-profile">
-        <a href="/profile.php">Ma page</a>
+        <a href="/profile.php"><?= $currentUser['firstname'][0] . $currentUser['lastname'][0] ?></a>
       </li>
       <li>
         <a href="/auth-logout.php">Déconnexion</a>

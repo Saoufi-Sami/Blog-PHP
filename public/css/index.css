@@ -9,7 +9,6 @@
   flex: 30%;
   margin: 1rem;
   min-height: 41rem;
-  min-width: 25rem;
   cursor: pointer;
 }
 
@@ -27,10 +26,24 @@
   padding: 1rem 1.5rem;
 }
 
+
 .img-container {
   height: 30rem;
   background-size: cover;
   transition: transform 1s;
+}
+
+.article-author {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.article-author p {
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .newsfeed-container {
